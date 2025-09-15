@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sensi Bot</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0d0d0d;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #1a1a1a;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #ff1a1a;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      color: #ccc;
+    }
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    button {
+      background: #ff1a1a;
+      color: #fff;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #cc0000;
+      box-shadow: 0 0 15px #ff1a1a;
+    }
+    .result {
+      margin-top: 25px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #00ff88;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 Sensi Bot</h1>
+    <p>Enter your phone model and smallest width to get the best Free Fire Max sensitivity.</p>
+
+    <input type="text" id="phone" placeholder="📱 Phone Model">
+    <input type="number" id="width" placeholder="📏 Smallest Width (dpi)">
+    <br>
+    <button onclick="getSensitivity()">Get Sensitivity</button>
+
+    <div class="result" id="output"></div>
+  </div>
+
+  <script>
+    function getSensitivity() {
+      const phone = document.getElementById("phone").value.trim().toLowerCase();
+      const width = parseInt(document.getElementById("width").value);
+      let sensitivity = "";
+
+      if (!phone || !width) {
+        sensitivity = "⚠️ Please enter both phone model and smallest width.";
+      } else {
+        if (width < 400) {
+          sensitivity = "⚡ Best Sensitivity:\nGeneral: 90\nRed Dot: 85\n2x: 70\n4x: 65\nAWM: 50";
+        } else if (width >= 400 && width < 500) {
+          sensitivity = "⚡ Best Sensitivity:\nGeneral: 95\nRed Dot: 90\n2x: 75\n4x: 70\nAWM: 55";
+        } else {
+          sensitivity = "⚡ Best Sensitivity:\nGeneral: 100\nRed Dot: 95\n2x: 80\n4x: 75\nAWM: 60";
+        }
+      }
+
+      document.getElementById("output").innerText = sensitivity;
+    }
+  </script>
+</body>
+</html>
